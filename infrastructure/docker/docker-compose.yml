@@ -1,0 +1,28 @@
+services:
+  mongodb:
+    container_name: movielie-mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=usr_movielie
+        - MONGO_INITDB_ROOT_PASSWORD=movielie
+        - MONGO_INITDB_DATABASE=movielie
+    volumes:
+      - movielie-mongodb:/data/db
+
+  rabbitmq:
+    container_name: movielie-rabbitmq
+    image: rabbitmq:3-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+#    volumes:
+#      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+#      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json:ro
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+volumes:
+  movielie-mongodb:

@@ -1,3 +1,26 @@
+application:
+  name: "\${spring.application.name}"
+
 spring:
   application:
     name: Movies-API
+  data:
+    mongodb:
+      host: "\${MONGODB_HOST:localhost}"
+      port: "\${MONGODB_PORT:27017}"
+      authentication-database: "\${MONGODB_AUTHENTICATION_DATABASE:admin}"
+      database: "\${MONGODB_DATABASE:movielie}"
+      username: "\${MONGODB_USERNAME:usr_movielie}"
+      password: "\${MONGODB_PASSWORD:movielie}"
+  rabbitmq:
+    host: "\${RABBITMQ_HOST:localhost}"
+    port: "\${RABBITMQ_PORT:5672}"
+    virtual-host: "\${RABBITMQ_VIRTUAL_HOST:/}"
+    username: "\${RABBITMQ_USERNAME:guest}"
+    password: "\${RABBITMQ_PASSWORD:guest}"
+
+rabbitmq:
+  queues:
+    movies:
+      create-movie:
+        name: "\${RABBITMQ_QUEUE_SAVE_MOVIE:create-movie}"

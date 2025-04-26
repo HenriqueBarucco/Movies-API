@@ -4,6 +4,7 @@ plugins {
     kotlin("plugin.spring") version "2.1.20"
     id("org.springframework.boot") version "3.4.5"
     id("io.spring.dependency-management") version "1.1.7"
+    kotlin("plugin.serialization") version "2.1.20"
 }
 
 group = "com.henriquebarucco"
@@ -25,10 +26,12 @@ dependencies {
     implementation(project(":application"))
     implementation(project(":domain"))
 
-    // implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
