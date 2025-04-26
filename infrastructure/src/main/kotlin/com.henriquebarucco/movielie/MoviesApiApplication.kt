@@ -1,4 +1,4 @@
-package com.henriquebarucco.movies
+package com.henriquebarucco.movielie
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
