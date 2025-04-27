@@ -20,7 +20,7 @@ class CreateMovieListener(
 
     private val logger = getLogger()
 
-    @RabbitListener(queues = ["\${rabbitmq.queues.movies.create-movie.name}"])
+    @RabbitListener(queues = ["\${rabbitmq.queues.movies.create-movie.name}"], errorHandler = "DeadLetterErrorHandler")
     fun createMovieMessage(message: Message) {
         val messageBody = json.decodeFromString<SaveMovieDto>(String(message.body))
         MDC.put(MESSAGE_BODY, messageBody.toString())
@@ -28,8 +28,11 @@ class CreateMovieListener(
         try {
             this.logger.info("[CREATE_MOVIE] Received new message to create movie")
             this.createMovieUseCase.execute(messageBody.toCommand())
-        } finally {
             this.logger.info("[CREATE_MOVIE] Movie created successfully")
+        } catch (ex: Exception) {
+            this.logger.error("[CREATE_MOVIE] Failed to create movie", ex)
+            throw ex
+        } finally {
             MDC.clear()
         }
     }

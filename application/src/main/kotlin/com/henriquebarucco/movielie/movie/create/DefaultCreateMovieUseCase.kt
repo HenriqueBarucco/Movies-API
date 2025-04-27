@@ -10,6 +10,7 @@ import com.henriquebarucco.movielie.movie.vo.Provider
 
 class DefaultCreateMovieUseCase(
     private val movieGateway: MovieGateway,
+    private val createMovieValidator: CreateMovieValidator,
 ) : CreateMovieUseCase() {
     override fun execute(input: CreateMovieCommand): CreateMovieOutput {
         val movie =
@@ -25,6 +26,8 @@ class DefaultCreateMovieUseCase(
                         id = input.externalId,
                     ),
             )
+
+        this.createMovieValidator.validate(movie)
 
         val aSavedMovie = this.movieGateway.save(movie)
 

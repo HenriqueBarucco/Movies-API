@@ -14,6 +14,7 @@ data class MovieDocument(
     val overview: String,
     val releaseDate: LocalDate,
     val status: String,
+    val externalReferences: Set<ExternalReferenceEmbedded>,
 ) {
     fun toDomain(): Movie =
         Movie(
@@ -23,7 +24,7 @@ data class MovieDocument(
             overview = overview,
             releaseDate = releaseDate,
             status = Status.valueOf(status),
-            externalReferences = emptySet(),
+            externalReferences = externalReferences.map { it.toDomain() }.toSet(),
         )
 }
 
@@ -35,4 +36,5 @@ fun Movie.toDocument(): MovieDocument =
         overview = this.overview,
         releaseDate = this.releaseDate,
         status = this.status.name,
+        externalReferences = this.externalReferences.map { it.toEmbedded() }.toSet(),
     )

@@ -1,0 +1,119 @@
+{
+   "bindings":[
+      {
+         "arguments":{
+
+         },
+         "destination":"create-movie-queue",
+         "destination_type":"queue",
+         "routing_key":"create-movie",
+         "source":"movies",
+         "vhost":"/"
+      },
+      {
+         "arguments":{
+
+         },
+         "destination":"create-movie-queue.parking-lot",
+         "destination_type":"queue",
+         "routing_key":"create-movie-queue.parking-lot",
+         "source":"movies",
+         "vhost":"/"
+      }
+   ],
+   "exchanges":[
+      {
+         "arguments":{
+
+         },
+         "auto_delete":false,
+         "durable":true,
+         "name":"movies",
+         "type":"direct",
+         "vhost":"/"
+      }
+   ],
+   "global_parameters":[
+
+   ],
+   "parameters":[
+
+   ],
+   "permissions":[
+      {
+         "configure":".*",
+         "read":".*",
+         "user":"guest",
+         "vhost":"/",
+         "write":".*"
+      }
+   ],
+   "policies":[
+
+   ],
+   "queues":[
+      {
+         "arguments":{
+
+         },
+         "auto_delete":false,
+         "durable":true,
+         "name":"create-movie-queue",
+         "type":"classic",
+         "vhost":"/"
+      },
+      {
+         "arguments":{
+            "x-dead-letter-exchange":"",
+            "x-dead-letter-routing-key":"create-movie-queue"
+         },
+         "auto_delete":false,
+         "durable":true,
+         "name":"create-movie-queue.wait",
+         "type":"classic",
+         "vhost":"/"
+      },
+      {
+         "arguments":{
+
+         },
+         "auto_delete":false,
+         "durable":true,
+         "name":"create-movie-queue.parking-lot",
+         "type":"classic",
+         "vhost":"/"
+      }
+   ],
+   "rabbit_version":"3.12.12",
+   "rabbitmq_version":"3.12.12",
+   "topic_permissions":[
+
+   ],
+   "users":[
+      {
+         "hashing_algorithm":"rabbit_password_hashing_sha256",
+         "limits":{
+
+         },
+         "name":"guest",
+         "password_hash":"3UjlzbVESzxC4Ko9kXQwE6PvJMOqnE+yXlQo7U52PwezpPtK",
+         "tags":[
+            "administrator"
+         ]
+      }
+   ],
+   "vhosts":[
+      {
+         "limits":[
+
+         ],
+         "metadata":{
+            "description":"Default virtual host",
+            "tags":[
+
+            ]
+         },
+         "name":"/"
+      }
+   ]
+}
