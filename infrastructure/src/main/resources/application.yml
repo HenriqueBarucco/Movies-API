@@ -18,6 +18,28 @@ spring:
     virtual-host: "\${RABBITMQ_VIRTUAL_HOST:/}"
     username: "\${RABBITMQ_USERNAME:guest}"
     password: "\${RABBITMQ_PASSWORD:guest}"
+  ai:
+    ollama:
+      base-url: "\${OLLAMA_BASE_URL:http://localhost:11434}"
+      init:
+        pull-model-strategy: "\${OLLAMA_PULL_MODEL_STRATEGY:when_missing}"
+        timeout: "\${OLLAMA_INIT_TIMEOUT:30000}"
+        max-retries: "\${OLLAMA_INIT_MAX_RETRIES:3}"
+        embedding:
+          include: "\${OLLAMA_EMBEDDING_INCLUDE:true}"
+          additional-models: "\${OLLAMA_ADDITIONAL_MODELS:}"
+      embedding:
+        model: "\${OLLAMA_MODEL_EMBEDDING:ollama}"
+    model:
+      embedding: "\${OLLAMA_MODEL_EMBEDDING:ollama}"
+    vectorstore:
+      qdrant:
+        host: "\${QDRANT_HOST:localhost}"
+        port: "\${QDRANT_PORT:6334}"
+        api-key: "\${QDRANT_API_KEY:}"
+        collection-name: "\${QDRANT_COLLECTION_NAME:movies}"
+        use-tls: "\${QDRANT_USE_TLS:false}"
+        initialize-schema: "\${QDRANT_INITIALIZE_SCHEMA:true}"
 
 rabbitmq:
   queues:
