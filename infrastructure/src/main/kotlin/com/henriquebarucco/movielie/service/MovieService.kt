@@ -30,7 +30,7 @@ class MovieService(
                 movie.id.value,
                 text,
                 mapOf(
-                    "releaseDate" to movie.releaseDate,
+                    "releaseDate" to movie.releaseDate.toString(),
                     "title" to movie.title,
                     "originalTitle" to movie.originalTitle,
                 ),

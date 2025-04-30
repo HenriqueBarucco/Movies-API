@@ -43,8 +43,8 @@ class DeadLetterErrorHandler(
         if (retryCount >= MAX_RETRIES) {
             this.logger.error("Max retries reached, sending to parking lot", ex)
 
-            message.messageProperties.headers["x-exception-message"] = ex.message ?: "Unknown error"
-            message.messageProperties.headers["x-exception-stacktrace"] = ex.stackTraceToString()
+            message.messageProperties.headers["x-exception-message"] = ex.cause?.message ?: "Unknown error"
+            message.messageProperties.headers["x-exception-stacktrace"] = ex.cause?.stackTraceToString()
 
             this.rabbitTemplate.send(
                 exchangeName,
