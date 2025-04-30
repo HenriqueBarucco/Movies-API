@@ -1,19 +1,19 @@
-package com.henriquebarucco.movielie.movie.fetch.similar.dto
+package com.henriquebarucco.movielie.movie.fetch.search.dto
 
 import com.henriquebarucco.movielie.movie.Movie
 
-data class FetchSimilarMoviesOutput(
-    val results: List<FetchSimilarMoviesItemOutput>,
+class SearchMoviesOutput(
+    val results: List<SearchMoviesItemOutput>,
 )
 
-data class FetchSimilarMoviesItemOutput(
+data class SearchMoviesItemOutput(
     val id: String,
     val title: String,
     val overview: String,
 ) {
     companion object {
         fun fromDomain(movie: Movie) =
-            FetchSimilarMoviesItemOutput(
+            SearchMoviesItemOutput(
                 id = movie.id.value,
                 title = movie.title,
                 overview = movie.overview,

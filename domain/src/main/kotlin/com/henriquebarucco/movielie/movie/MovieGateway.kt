@@ -1,5 +1,6 @@
 package com.henriquebarucco.movielie.movie
 
+import com.henriquebarucco.movielie.filter.Filter
 import com.henriquebarucco.movielie.movie.vo.ExternalReference
 
 interface MovieGateway {
@@ -10,4 +11,6 @@ interface MovieGateway {
     fun findById(movieId: MovieId): Movie?
 
     fun findSimilar(movie: Movie): List<Movie>
+
+    fun findByFilters(filters: List<Filter>): List<Movie>
 }

@@ -1,6 +1,10 @@
 application:
   name: "\${spring.application.name}"
 
+server:
+  error:
+    include-stacktrace: never
+
 spring:
   application:
     name: Movies-API

@@ -2,8 +2,8 @@ package com.henriquebarucco.movielie.movie.fetch.similar
 
 import com.henriquebarucco.movielie.movie.MovieGateway
 import com.henriquebarucco.movielie.movie.MovieId
-import com.henriquebarucco.movielie.movie.fetch.similar.dto.FetchSimilarMovieOutput
 import com.henriquebarucco.movielie.movie.fetch.similar.dto.FetchSimilarMoviesCommand
+import com.henriquebarucco.movielie.movie.fetch.similar.dto.FetchSimilarMoviesItemOutput
 import com.henriquebarucco.movielie.movie.fetch.similar.dto.FetchSimilarMoviesOutput
 import com.henriquebarucco.movielie.shared.exceptions.ResourceNotFoundException
 
@@ -16,7 +16,7 @@ class DefaultFetchSimilarMoviesUseCase(
         val movies = this.movieGateway.findSimilar(movie)
 
         return FetchSimilarMoviesOutput(
-            results = movies.map { FetchSimilarMovieOutput.fromDomain(it) },
+            results = movies.map { FetchSimilarMoviesItemOutput.fromDomain(it) },
         )
     }
 }
