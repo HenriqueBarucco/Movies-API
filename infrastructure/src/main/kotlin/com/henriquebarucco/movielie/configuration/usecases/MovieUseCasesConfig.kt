@@ -4,6 +4,8 @@ import com.henriquebarucco.movielie.movie.MovieGateway
 import com.henriquebarucco.movielie.movie.create.CreateMovieUseCase
 import com.henriquebarucco.movielie.movie.create.CreateMovieValidator
 import com.henriquebarucco.movielie.movie.create.DefaultCreateMovieUseCase
+import com.henriquebarucco.movielie.movie.fetch.similar.DefaultFetchSimilarMoviesUseCase
+import com.henriquebarucco.movielie.movie.fetch.similar.FetchSimilarMoviesUseCase
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -17,4 +19,7 @@ class MovieUseCasesConfig(
 
     @Bean
     fun createMovieValidator(): CreateMovieValidator = CreateMovieValidator(movieGateway)
+
+    @Bean
+    fun FetchSimilarMoviesUseCase(): FetchSimilarMoviesUseCase = DefaultFetchSimilarMoviesUseCase(movieGateway)
 }
