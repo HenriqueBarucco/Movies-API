@@ -44,7 +44,17 @@ services:
     environment:
       QDRANT__SERVICE__ENABLE_TLS: "false"
 
+  redis:
+    container_name: movielie-redis
+    image: redis:7.2-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - movielie-redis:/data
+    command: [ "redis-server", "--appendonly", "yes" ]
+
 volumes:
   movielie-mongodb:
   movielie-ollama:
   movielie-qdrant:
+  movielie-redis:

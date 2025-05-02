@@ -17,14 +17,14 @@ data class FetchSimilarMovieResponse(
 data class FetchSimilarMovieItemResponse(
     val id: String,
     val title: String,
-    val overview: String,
+    val poster: String,
 ) {
     companion object {
         fun fromOutput(output: FetchSimilarMoviesItemOutput) =
             FetchSimilarMovieItemResponse(
                 id = output.id,
                 title = output.title,
-                overview = output.overview,
+                poster = output.poster,
             )
     }
 }

@@ -14,7 +14,7 @@ data class ExternalReferenceEmbedded(
         )
 }
 
-fun ExternalReference.toEmbedded(): ExternalReferenceEmbedded =
+fun ExternalReference.toExternalReferenceEmbedded(): ExternalReferenceEmbedded =
     ExternalReferenceEmbedded(
         provider = provider.name,
         id = id,

@@ -4,9 +4,6 @@ import com.henriquebarucco.movielie.movie.Movie
 import com.henriquebarucco.movielie.movie.MovieGateway
 import com.henriquebarucco.movielie.movie.create.dto.CreateMovieCommand
 import com.henriquebarucco.movielie.movie.create.dto.CreateMovieOutput
-import com.henriquebarucco.movielie.movie.enum.Status
-import com.henriquebarucco.movielie.movie.vo.ExternalReference
-import com.henriquebarucco.movielie.movie.vo.Provider
 
 class DefaultCreateMovieUseCase(
     private val movieGateway: MovieGateway,
@@ -17,20 +14,24 @@ class DefaultCreateMovieUseCase(
             Movie.new(
                 title = input.title,
                 originalTitle = input.originalTitle,
-                overview = input.overview,
+                originalLanguage = input.originalLanguage,
+                imdbId = input.imdbId,
                 releaseDate = input.releaseDate,
-                status = Status.valueOf(input.status),
-                externalReference =
-                    ExternalReference(
-                        provider = Provider.valueOf(input.externalProvider),
-                        id = input.externalId,
-                    ),
+                poster = input.poster,
+                backdrop = input.backdrop,
+                overview = input.overview,
+                status = input.status,
+                duration = input.duration,
+                externalReferenceId = input.externalId,
+                externalReferenceProvider = input.externalProvider,
+                videos = input.videos,
+                genres = input.genres,
+                keywords = input.keywords,
             )
 
         this.createMovieValidator.validate(movie)
 
         val aSavedMovie = this.movieGateway.save(movie)
-
-        return CreateMovieOutput(aSavedMovie.id.value)
+        return CreateMovieOutput(aSavedMovie)
     }
 }

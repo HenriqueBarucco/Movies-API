@@ -1,129 +1,257 @@
 {
-   "bindings":[
+   "bindings": [
       {
-         "arguments":{
-
-         },
-         "destination":"create-movie-queue",
-         "destination_type":"queue",
-         "routing_key":"create-movie",
-         "source":"movies",
-         "vhost":"/"
+         "arguments": {},
+         "destination": "create-movie-queue",
+         "destination_type": "queue",
+         "routing_key": "create-movie",
+         "source": "movies",
+         "vhost": "/"
       },
       {
-         "arguments":{
-
-         },
-         "destination":"create-movie-queue.parking-lot",
-         "destination_type":"queue",
-         "routing_key":"create-movie-queue.parking-lot",
-         "source":"movies",
-         "vhost":"/"
+         "arguments": {},
+         "destination": "create-movie-queue.parking-lot",
+         "destination_type": "queue",
+         "routing_key": "create-movie-queue.parking-lot",
+         "source": "movies",
+         "vhost": "/"
       },
       {
-         "arguments":{
-
-         },
-         "destination":"create-movie-queue.wait",
-         "destination_type":"queue",
-         "routing_key":"create-movie-queue.wait",
-         "source":"movies",
-         "vhost":"/"
-      }
-   ],
-   "exchanges":[
-      {
-         "arguments":{
-
-         },
-         "auto_delete":false,
-         "durable":true,
-         "name":"movies",
-         "type":"direct",
-         "vhost":"/"
-      }
-   ],
-   "global_parameters":[
-
-   ],
-   "parameters":[
-
-   ],
-   "permissions":[
-      {
-         "configure":".*",
-         "read":".*",
-         "user":"guest",
-         "vhost":"/",
-         "write":".*"
-      }
-   ],
-   "policies":[
-
-   ],
-   "queues":[
-      {
-         "arguments":{
-
-         },
-         "auto_delete":false,
-         "durable":true,
-         "name":"create-movie-queue",
-         "type":"classic",
-         "vhost":"/"
+         "arguments": {},
+         "destination": "create-movie-queue.wait",
+         "destination_type": "queue",
+         "routing_key": "create-movie-queue.wait",
+         "source": "movies",
+         "vhost": "/"
       },
       {
-         "arguments":{
-            "x-dead-letter-exchange":"movies",
-            "x-dead-letter-routing-key":"create-movie"
-         },
-         "auto_delete":false,
-         "durable":true,
-         "name":"create-movie-queue.wait",
-         "type":"classic",
-         "vhost":"/"
+         "arguments": {},
+         "destination": "enrich-movie-queue",
+         "destination_type": "queue",
+         "routing_key": "enrich-movie",
+         "source": "movies",
+         "vhost": "/"
       },
       {
-         "arguments":{
-
-         },
-         "auto_delete":false,
-         "durable":true,
-         "name":"create-movie-queue.parking-lot",
-         "type":"classic",
-         "vhost":"/"
+         "arguments": {},
+         "destination": "enrich-movie-queue.parking-lot",
+         "destination_type": "queue",
+         "routing_key": "enrich-movie-queue.parking-lot",
+         "source": "movies",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "destination": "enrich-movie-queue.wait",
+         "destination_type": "queue",
+         "routing_key": "enrich-movie-queue.wait",
+         "source": "movies",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "destination": "save-movie-queue",
+         "destination_type": "queue",
+         "routing_key": "save-movie",
+         "source": "movies",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "destination": "save-movie-queue.parking-lot",
+         "destination_type": "queue",
+         "routing_key": "save-movie-queue.parking-lot",
+         "source": "movies",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "destination": "save-movie-queue.wait",
+         "destination_type": "queue",
+         "routing_key": "save-movie-queue.wait",
+         "source": "movies",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "destination": "update-movie-queue",
+         "destination_type": "queue",
+         "routing_key": "update-movie",
+         "source": "movies",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "destination": "update-movie-queue.parking-lot",
+         "destination_type": "queue",
+         "routing_key": "update-movie-queue.parking-lot",
+         "source": "movies",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "destination": "update-movie-queue.wait",
+         "destination_type": "queue",
+         "routing_key": "update-movie-queue.wait",
+         "source": "movies",
+         "vhost": "/"
       }
    ],
-   "rabbit_version":"3.12.12",
-   "rabbitmq_version":"3.12.12",
-   "topic_permissions":[
-
-   ],
-   "users":[
+   "exchanges": [
       {
-         "hashing_algorithm":"rabbit_password_hashing_sha256",
-         "limits":{
-
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "movies",
+         "type": "direct",
+         "vhost": "/"
+      }
+   ],
+   "global_parameters": [],
+   "parameters": [],
+   "permissions": [
+      {
+         "configure": ".*",
+         "read": ".*",
+         "user": "guest",
+         "vhost": "/",
+         "write": ".*"
+      }
+   ],
+   "policies": [],
+   "queues": [
+      {
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "enrich-movie-queue",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "save-movie-queue",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "enrich-movie-queue.parking-lot",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "create-movie-queue",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {
+            "x-dead-letter-exchange": "movies",
+            "x-dead-letter-routing-key": "create-movie"
          },
-         "name":"guest",
-         "password_hash":"3UjlzbVESzxC4Ko9kXQwE6PvJMOqnE+yXlQo7U52PwezpPtK",
-         "tags":[
+         "auto_delete": false,
+         "durable": true,
+         "name": "create-movie-queue.wait",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {
+            "x-dead-letter-exchange": "movies",
+            "x-dead-letter-routing-key": "enrich-movie"
+         },
+         "auto_delete": false,
+         "durable": true,
+         "name": "enrich-movie-queue.wait",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {
+            "x-dead-letter-exchange": "movies",
+            "x-dead-letter-routing-key": "update-movie"
+         },
+         "auto_delete": false,
+         "durable": true,
+         "name": "update-movie-queue.wait",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "create-movie-queue.parking-lot",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {
+            "x-dead-letter-exchange": "movies",
+            "x-dead-letter-routing-key": "save-movie"
+         },
+         "auto_delete": false,
+         "durable": true,
+         "name": "save-movie-queue.wait",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "update-movie-queue.parking-lot",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "update-movie-queue",
+         "type": "classic",
+         "vhost": "/"
+      },
+      {
+         "arguments": {},
+         "auto_delete": false,
+         "durable": true,
+         "name": "save-movie-queue.parking-lot",
+         "type": "classic",
+         "vhost": "/"
+      }
+   ],
+   "rabbit_version": "3.12.12",
+   "rabbitmq_version": "3.12.12",
+   "topic_permissions": [],
+   "users": [
+      {
+         "hashing_algorithm": "rabbit_password_hashing_sha256",
+         "limits": {},
+         "name": "guest",
+         "password_hash": "3UjlzbVESzxC4Ko9kXQwE6PvJMOqnE+yXlQo7U52PwezpPtK",
+         "tags": [
             "administrator"
          ]
       }
    ],
-   "vhosts":[
+   "vhosts": [
       {
-         "limits":[
-
-         ],
-         "metadata":{
-            "description":"Default virtual host",
-            "tags":[
-
-            ]
+         "limits": [],
+         "metadata": {
+            "default_queue_type": "undefined",
+            "description": "Default virtual host",
+            "tags": []
          },
-         "name":"/"
+         "name": "/"
       }
    ]
 }

@@ -1,8 +1,9 @@
-package com.henriquebarucco.movielie.movie.create.dto
+package com.henriquebarucco.movielie.movie.update.dto
 
 import com.henriquebarucco.movielie.movie.vo.Video
 
-data class CreateMovieCommand(
+data class UpdateMovieCommand(
+    val id: String,
     val externalId: String,
     val externalProvider: String,
     val title: String,

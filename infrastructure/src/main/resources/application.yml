@@ -45,4 +45,8 @@ rabbitmq:
   queues:
     movies:
       create-movie:
-        name: "\${RABBITMQ_QUEUE_SAVE_MOVIE:create-movie-queue}"
+        queue: "\${RABBITMQ_QUEUE_SAVE_MOVIE:create-movie-queue}"
+        concurrency: "\${RABBITMQ_QUEUE_CREATE_MOVIE_CONCURRENCY:1}"
+      save-movie:
+        queue: "\${RABBITMQ_QUEUE_SAVE_MOVIE:save-movie-queue}"
+        concurrency: "\${RABBITMQ_QUEUE_SAVE_MOVIE_CONCURRENCY:1}"

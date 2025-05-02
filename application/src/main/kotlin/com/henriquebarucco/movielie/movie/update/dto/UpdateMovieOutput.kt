@@ -1,8 +1,8 @@
-package com.henriquebarucco.movielie.movie.create.dto
+package com.henriquebarucco.movielie.movie.update.dto
 
 import com.henriquebarucco.movielie.movie.Movie
 
-data class CreateMovieOutput(
+data class UpdateMovieOutput(
     val id: String,
 ) {
     constructor(movie: Movie) : this(

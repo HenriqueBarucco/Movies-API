@@ -9,14 +9,14 @@ data class FetchSimilarMoviesOutput(
 data class FetchSimilarMoviesItemOutput(
     val id: String,
     val title: String,
-    val overview: String,
+    val poster: String,
 ) {
     companion object {
         fun fromDomain(movie: Movie) =
             FetchSimilarMoviesItemOutput(
                 id = movie.id.value,
                 title = movie.title,
-                overview = movie.overview,
+                poster = movie.poster.value,
             )
     }
 }

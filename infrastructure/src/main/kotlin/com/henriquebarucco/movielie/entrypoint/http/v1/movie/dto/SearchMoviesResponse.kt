@@ -17,14 +17,16 @@ data class SearchMoviesResponse(
 data class SearchMoviesItemResponse(
     val id: String,
     val title: String,
-    val overview: String,
+    val poster: String,
+    val checksum: String,
 ) {
     companion object {
         fun fromOutput(output: SearchMoviesItemOutput) =
             SearchMoviesItemResponse(
                 id = output.id,
                 title = output.title,
-                overview = output.overview,
+                poster = output.poster,
+                checksum = output.checksum,
             )
     }
 }

@@ -1,6 +1,6 @@
 package com.henriquebarucco.movielie.entrypoint.amqp
 
-import com.henriquebarucco.movielie.entrypoint.amqp.dto.SaveMovieDto
+import com.henriquebarucco.movielie.entrypoint.amqp.messages.CreateMovieDto
 import com.henriquebarucco.movielie.movie.create.CreateMovieUseCase
 import com.henriquebarucco.movielie.shared.utils.Logger.Companion.getLogger
 import kotlinx.serialization.json.Json
@@ -20,9 +20,13 @@ class CreateMovieListener(
 
     private val logger = getLogger()
 
-    @RabbitListener(queues = ["\${rabbitmq.queues.movies.create-movie.name}"], errorHandler = "DeadLetterErrorHandler")
+    @RabbitListener(
+        queues = ["\${rabbitmq.queues.movies.create-movie.queue}"],
+        errorHandler = "DeadLetterErrorHandler",
+        concurrency = "\${rabbitmq.queues.movies.create-movie.concurrency}",
+    )
     fun createMovieMessage(message: Message) {
-        val messageBody = json.decodeFromString<SaveMovieDto>(String(message.body))
+        val messageBody = json.decodeFromString<CreateMovieDto>(String(message.body))
         MDC.put(MESSAGE_BODY, messageBody.toString())
 
         try {

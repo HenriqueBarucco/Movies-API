@@ -9,14 +9,16 @@ class SearchMoviesOutput(
 data class SearchMoviesItemOutput(
     val id: String,
     val title: String,
-    val overview: String,
+    val poster: String,
+    val checksum: String,
 ) {
     companion object {
         fun fromDomain(movie: Movie) =
             SearchMoviesItemOutput(
                 id = movie.id.value,
                 title = movie.title,
-                overview = movie.overview,
+                poster = movie.poster.value,
+                checksum = movie.checksum(),
             )
     }
 }
