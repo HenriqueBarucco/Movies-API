@@ -3,6 +3,7 @@ package com.henriquebarucco.movielie.entrypoint.amqp
 import com.henriquebarucco.movielie.entrypoint.amqp.messages.SaveMovieDto
 import com.henriquebarucco.movielie.movie.save.SaveMovieUseCase
 import com.henriquebarucco.movielie.shared.utils.Logger.Companion.getLogger
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.slf4j.MDC
 import org.springframework.amqp.core.Message
@@ -27,7 +28,7 @@ class SaveMovieListener(
     )
     fun saveMovieMessage(message: Message) {
         val messageBody = json.decodeFromString<SaveMovieDto>(String(message.body))
-        MDC.put(MESSAGE_BODY, messageBody.toString())
+        MDC.put(MESSAGE_BODY, json.encodeToString(messageBody))
 
         try {
             this.logger.info("[SAVE_MOVIE] Received new message to save movie")

@@ -3,6 +3,7 @@ package com.henriquebarucco.movielie.entrypoint.amqp
 import com.henriquebarucco.movielie.entrypoint.amqp.messages.CreateMovieDto
 import com.henriquebarucco.movielie.movie.create.CreateMovieUseCase
 import com.henriquebarucco.movielie.shared.utils.Logger.Companion.getLogger
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.slf4j.MDC
 import org.springframework.amqp.core.Message
@@ -27,7 +28,7 @@ class CreateMovieListener(
     )
     fun createMovieMessage(message: Message) {
         val messageBody = json.decodeFromString<CreateMovieDto>(String(message.body))
-        MDC.put(MESSAGE_BODY, messageBody.toString())
+        MDC.put(MESSAGE_BODY, json.encodeToString(messageBody))
 
         try {
             this.logger.info("[CREATE_MOVIE] Received new message to create movie")
