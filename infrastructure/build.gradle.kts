@@ -40,6 +40,7 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.0")
+    implementation("net.logstash.logback:logstash-logback-encoder:8.1")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 

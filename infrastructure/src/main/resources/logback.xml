@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="out-console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%X{session} %d{yyyy-MM-dd_HH:mm:ss.SSS} %logger{36} %-5level %mdc %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="out-json" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>ts</fieldName>
+                    <timeZone>UTC</timeZone>
+                </timestamp>
+                <loggerName>
+                    <fieldName>logger</fieldName>
+                </loggerName>
+                <logLevel>
+                    <fieldName>severity</fieldName>
+                </logLevel>
+                <threadName>
+                    <fieldName>thread</fieldName>
+                </threadName>
+                <arguments>
+                    <includeNonStructuredArguments>false</includeNonStructuredArguments>
+                </arguments>
+                <stackTrace>
+                    <fieldName>stack</fieldName>
+                </stackTrace>
+                <message>
+                    <fieldName>message</fieldName>
+                </message>
+            </providers>
+        </encoder>
+    </appender>
+
+    <springProperty scope="context" name="LOGSTASH_URL" source="logstash.url"/>
+    <springProperty scope="context" name="LOGSTASH_TOKEN" source="logstash.token"/>
+    <springProperty scope="context" name="ENV" source="logstash.env"/>
+    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+        <destination>${LOGSTASH_URL}</destination>
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>
+                {
+                    "environment": "${ENV}",
+                    "token": "${LOGSTASH_TOKEN}",
+                    "app": "movies-api",
+                    "kind": "api",
+                    "type": "json"
+                }
+            </customFields>
+        </encoder>
+    </appender>
+
+    <root level="${LOG_LEVEL:-info}">
+        <appender-ref ref="${LOG_APPENDER:-out-json}"/>
+        <appender-ref ref="LOGSTASH"/>
+    </root>
+
+</configuration>

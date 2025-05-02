@@ -50,3 +50,8 @@ rabbitmq:
       save-movie:
         queue: "\${RABBITMQ_QUEUE_SAVE_MOVIE:save-movie-queue}"
         concurrency: "\${RABBITMQ_QUEUE_SAVE_MOVIE_CONCURRENCY:1}"
+
+logstash:
+  url: "\${LOGSTASH_URL:localhost:5000}"
+  token: "\${LOGSTASH_TOKEN:xxx}"
+  env: "\${ENV:dev}"

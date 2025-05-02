@@ -243,15 +243,18 @@
          ]
       }
    ],
-   "vhosts": [
+   "vhosts":[
       {
-         "limits": [],
-         "metadata": {
-            "default_queue_type": "undefined",
-            "description": "Default virtual host",
-            "tags": []
+         "limits":[
+
+         ],
+         "metadata":{
+            "description":"Default virtual host",
+            "tags":[
+
+            ]
          },
-         "name": "/"
+         "name":"/"
       }
    ]
 }
